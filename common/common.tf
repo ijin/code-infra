@@ -3,11 +3,6 @@ variable "s3" { type = "map" }
 variable "app" {}
 variable "r53_zone_id" { default = "Z2M4EHUR26P7ZW" }
 
-data "aws_route53_zone" "domain" {
-  name    = "${var.domain}."
-}
-
-# S3
 
 # KMS
 resource "aws_kms_key" "ps" {
