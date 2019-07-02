@@ -1,4 +1,6 @@
 #!/bin/sh -xe
+echo "planning"
+git log --graph --pretty='format:%C(yellow)%h%Creset %s %Cgreen(%an)%Creset %Cred%d%Creset - %ad' --date=relative
 export EXCLUDE_DIRS='^\.|scripts|bin'
 DIRS=$(git --no-pager diff origin/master..HEAD --name-only | xargs -I {} dirname {} | egrep -v "$EXCLUDE_DIRS" | uniq)
 if [ -z "$DIRS" ]; then
