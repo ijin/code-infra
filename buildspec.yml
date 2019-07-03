@@ -1,8 +1,8 @@
 version: 0.2
 phases:
-#  pre_build:
-#    commands:
-#      - /bin/sh scripts/setup.sh
+  pre_build:
+    commands:
+      - /bin/sh scripts/setup.sh
   build:
     commands:
       - /bin/sh scripts/run.sh
