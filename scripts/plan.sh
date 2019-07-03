@@ -12,9 +12,7 @@ do
   #(cd $dir && terraform plan -input=false -no-color | ../scripts/tfnotify --config ../.tfnotify.yml plan --message "$dir")
   cd $dir
   terraform init -input=false -no-color
-  terraform plan -input=false 2>&1 | tee plan.log
-  ls
+  terraform plan -input=false -no-color 2>&1 | tee plan.log
   cd ../scripts
-  ls
-  cat ../$dir/plan.log | tfnotify plan --message "$dir"
+  cat ../$dir/plan.log | ./tfnotify plan --message "$dir"
 done
