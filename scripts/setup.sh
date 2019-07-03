@@ -7,5 +7,7 @@ cd tmp
 wget $TFNOTIFY -O /tmp/t.tgz
 tar xvfz /tmp/t.tgz -C /tmp/
 cd -
+pwd
+ls
 mv /tmp/tfnotify*/tfnotify scripts/
 ls -slha scripts
