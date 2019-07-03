@@ -13,6 +13,8 @@ do
   cd $dir
   terraform init -input=false -no-color
   terraform plan -input=false 2>&1 | tee plan.log
+  ls
   cd ../scripts
+  ls
   cat ../$dir/plan.log | tfnotify plan --message "$dir"
 done
