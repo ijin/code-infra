@@ -9,9 +9,10 @@ if [ -z "$DIRS" ]; then
 fi
 for dir in $DIRS
 do
-  (cd $dir && terraform init -input=false -no-color && cd -)
   #(cd $dir && terraform plan -input=false -no-color | ../scripts/tfnotify --config ../.tfnotify.yml plan --message "$dir")
-  (cd $dir && terraform plan -input=false 2>&1 | tee plan.log && cd -)
-  (ls scripts)
-  (cd scripts && cat ../$dir/plan.log | tfnotify plan --message "$dir")
+  cd $dir
+  terraform init -input=false -no-color
+  terraform plan -input=false 2>&1 | tee plan.log
+  cd ../scripts
+  cat ../$dir/plan.log | tfnotify plan --message "$dir"
 done
