@@ -11,5 +11,6 @@ for dir in $DIRS
 do
   (cd $dir && terraform init -input=false -no-color)
   #(cd $dir && terraform plan -input=false -no-color | ../bin/tfnotify --config ../.tfnotify.yml plan --message "$dir")
-  (cd $dir && terraform plan -input=false -no-color)
+  (cd $dir && terraform plan -input=false 2>&1 | tee plan.log)
+  (cd $dir && cat plan.log | ../bin/tfnotify --config ../.tfnotify.yml plan --message "$dir")
 done

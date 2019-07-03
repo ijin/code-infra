@@ -1,0 +1,27 @@
+---
+ci: codebuild
+notifier:
+  slack:
+    token: $SLACK_TOKEN
+    channel: '#test'
+    #channel: 'C0524JY5Z'
+    #channel: "$SLACK_CHANNEL_ID"
+    bot: tfnotify
+  github:
+    token: $GITHUB_TOKEN
+    repository:
+      owner: "ijin"
+      name: "code-infra"
+terraform:
+  plan:
+    template: |
+      {{ .Title }}
+      {{ .Message }}
+      {{if .Result}}
+      <pre><code> {{ .Result }}
+      </pre></code>
+      {{end}}
+      <details><summary>Details (Click me)</summary>
+      <pre><code>
+      {{ .Body }}
+      </pre></code></details>
